@@ -1,6 +1,6 @@
 
 export async function getAllEvents() {
-    const response = await fetch('https://nextjs-b2dff-default-rtdb.firebaseio.com/events.json')
+    const response = await fetch('https://nextjs-b2dff-default-rtdb.firebaseio.com/events.json');
     const data = await response.json();
     const events = [];
 
@@ -17,22 +17,25 @@ export async function getAllEvents() {
 export async function getFeaturedEvents() {
     const allEvents = await getAllEvents();
     return allEvents.filter((event) => event.isFeatured);
-  }
+}
+
+export async function getEventById(id) {
+  const allEvents = await getAllEvents();
+  return allEvents.find((event) => event.id === id);
+}
   
   
   
-  export function getFilteredEvents(dateFilter) {
-    const { year, month } = dateFilter;
-  
-    let filteredEvents = DUMMY_EVENTS.filter((event) => {
-      const eventDate = new Date(event.date);
-      return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
-    });
-  
-    return filteredEvents;
-  }
-  
-  export function getEventById(id) {
-    return DUMMY_EVENTS.find((event) => event.id === id);
-  }
+export function getFilteredEvents(dateFilter) {
+  const { year, month } = dateFilter;
+
+  let filteredEvents = DUMMY_EVENTS.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+  });
+
+  return filteredEvents;
+}
+
+
   

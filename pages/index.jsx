@@ -18,6 +18,7 @@ export default function FeaturedEventsPage(props){
 export async function getStaticProps(context){
 
     const featuredEvents = await getFeaturedEvents();
+    
 
     return{
         props: {
